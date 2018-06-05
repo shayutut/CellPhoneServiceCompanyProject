@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="CRM.Simulator.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CRM.Simulator"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" DataContext="{Binding Source={StaticResource Locator},Path=Simulator}">
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="Log Out" FontSize="50" />
+            <TextBlock Grid.Column="1" Text="Simulator" FontSize="80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Recomendation}" Grid.Column="2" Grid.ColumnSpan="2" FontSize="30" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="1"  Grid.ColumnSpan="2" Text="Client" FontSize="50" VerticalAlignment="Center" />
+            <ComboBox ItemsSource="{Binding Clients}"  SelectedItem="{Binding Client,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" MinWidth="150" VerticalAlignment="Center"/>
+            <Button Grid.Row="1" Grid.Column="3" Content="Get Invoce for this client" FontSize="30" Visibility="{Binding IsLineChoosed,Mode=TwoWay}" Command="{Binding GetInvoceCommand}" />
+
+            <TextBlock Grid.Row="2"  Grid.ColumnSpan="2" Text="Selected Line" FontSize="50" VerticalAlignment="Center" />
+            <ComboBox ItemsSource="{Binding Lines,Mode=TwoWay}" SelectedItem="{Binding Line,Mode=TwoWay}" Grid.Row="2" Grid.Column="2" MinWidth="150" VerticalAlignment="Center"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0"  Text="Min Duration" FontSize="50" VerticalAlignment="Center" />
+            <TextBox Text="{Binding Min,Mode=TwoWay}" Grid.Row="3" Grid.Column="1" PlaceholderText="Min Duration" FontSize="50"/>
+            <TextBlock Grid.Row="3"  Grid.Column="2" Text="Max Duration" FontSize="50" VerticalAlignment="Center" />
+            <TextBox Text="{Binding Max,Mode=TwoWay}" Grid.Row="3" Grid.Column="3" PlaceholderText="Max Duration" FontSize="50"/>
+
+            <TextBlock Text="Number of Calls/SMS" FontSize="50" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding NumberOfCalls,Mode=TwoWay}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" FontSize="50"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="3" VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding IsSMS,Mode=TwoWay}"  Name="CheckBoxSMS" />
+                <TextBlock Name="TextBlockSMS" RelativePanel.RightOf="CheckBoxSMS" Text="SMS" FontSize="50" />
+            </StackPanel>
+
+            <TextBlock Text="Send to" FontSize="50" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox Text="{Binding Call.DestinaionNumber,Mode=TwoWay}"  Grid.Column="2" FontSize="50" Grid.Row="5" VerticalAlignment="Center"/>
+
+            <Button Command="{Binding SimulateCommand}" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" Content="Simulate" FontSize="50" Grid.Row="6"/>
+        </Grid>
+    </Grid>
+</Page>
+
